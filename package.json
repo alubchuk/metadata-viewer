@@ -1,0 +1,25 @@
+{
+  "name": "metadata-previewer",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "url-regex": "^4.0.0"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.41.0",
+    "react-scripts": "0.9.3"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "scripts": {
+    "flow": "flow",
+    "prestart": "npm run flow",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

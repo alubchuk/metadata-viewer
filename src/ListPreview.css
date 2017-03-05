@@ -1,0 +1,16 @@
+.ListPreview {
+    margin-left: 30px;
+}
+
+.ListPreview-container {
+    list-style-type: none;
+}
+
+.ListPreview-item {
+    background: #114499;
+    color: white;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 50%;
+    text-align: center;
+}
