@@ -1,6 +1,6 @@
 import {parseQuery} from './utils';
 import constants from './constants';
-import urlValidator from 'url-regex';
+import {urlValidator} from './utils';
 
 const {queryConfig} = constants;
 

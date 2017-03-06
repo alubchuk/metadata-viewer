@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import {changeUsers, changeTags, changeSites, resetState} from '../../redux/reducer';
 import * as utils from '../../framework/utils';
 import constants from '../../framework/constants';
-import urlValidator from 'url-regex';
 
 type stateTypes = {loading: boolean, users: Array<string>, tags: Array<string>, sites: Array<Object>};
 const mapStateToProps = ({users, tags}: stateTypes) => ({users, tags});
@@ -29,7 +28,7 @@ export class AppContainer extends Component {
 
       const {users, tags, sites} = utils.parseQuery({
           query,
-          urlValidator,
+          urlValidator: utils.urlValidator,
           queryConfig: constants.queryConfig
       });
 
