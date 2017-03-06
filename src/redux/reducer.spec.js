@@ -76,7 +76,7 @@ describe('Reducer tests', () => {
             reducer,
             initialState,
             {type: FETCH_SITE_METADATA_ERROR, error: errorMock},
-            {...initialState, loading: false, error: errorMock}
+            {...initialState, loading: false, error: errorMock.message}
         ));
     });
 

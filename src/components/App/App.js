@@ -12,13 +12,12 @@ const App = (props: Object) => (
         <h2>{props.title}</h2>
       </div>
 
-      <div className="App-content">
+      <div>
         <Textarea onChange={props.onChange}/>
-        <hr />
         <div className="App-content-preview">
-            <ListPreviewContainer type='users' title={'Users Preview'} itemClassName='user' />
-            <ListPreviewContainer type='tags' title={'Tags Preview'} itemClassName='tag' />
-            <LinkPreviewContainer title={'Site Metadata Preview'} />
+            <ListPreviewContainer type='users' title={'Users'} itemClassName='user' />
+            <ListPreviewContainer type='tags' title={'Tags'} itemClassName='tag' />
+            <LinkPreviewContainer title={'Sites Metadata'} />
         </div>
       </div>
     </div>

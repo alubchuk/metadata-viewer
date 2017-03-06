@@ -8,13 +8,19 @@ const LinkPreview = (props: Object) => {
     let content = <Halogen.RingLoader color='#DD0A1A' className='LinkPreview-loader' />;
     if (!props.loading) {
         content = (
-            <div>
-                <h3>{props.data.length ? props.title : ''}</h3>
+            <div className='LinkPreview-container'>
                 {props.data.map((item: Object, index: number) => <LinkPreviewItem key={index} item={item} />)}
             </div>
         );
     }
-    return <div className='LinkPreview'>{content}</div>;
+    return (
+        <div className='LinkPreview'>
+            <div>
+                <h3>{props.title}:</h3>
+                {content}
+            </div>
+        </div>
+    );
 };
 
 LinkPreview.propTypes = {

@@ -6,7 +6,7 @@ export const initialState = {
     users: [],
     tags: [],
     sites: [],
-    error: null
+    error: ''
 };
 
 export const CHANGE_USERS = 'CHANGE_USERS';
@@ -18,6 +18,7 @@ export const FETCH_SITE_METADATA_SUCCESS = 'FETCH_SITE_METADATA_SUCCESS';
 export const FETCH_SITE_METADATA_ERROR = 'FETCH_SITE_METADATA_ERROR';
 
 export const resetState = () => ({type: RESET_STATE});
+
 export const changeUsers = (users: Array<string>) => ({
     type: CHANGE_USERS,
     payload: {users}
@@ -75,7 +76,7 @@ export default function (state: Object = initialState, action: Object) {
                 ...state,
                 sites: [],
                 loading: false,
-                error: action.error
+                error: action.error.message
             };
         case RESET_STATE:
             return initialState;

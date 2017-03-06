@@ -1,7 +1,48 @@
 .LinkPreview {
-    width: 100%;
+    flex-grow: 4;
+    flex-basis: 80%;
+    padding: 10px 20px;
+}
+
+.LinkPreview-container {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+}
+
+.LinkPreview-item {
+    box-shadow: -3px 0 10px rgba(0,0,0,.12), 0 -3px 10px rgba(0,0,0,.12);
+    border-radius: 10%;
+    text-align: left;
+    overflow: hidden;
+    flex-basis: 224px;
+    margin: 10px;
+    min-height: 300px;
+}
+
+.LinkPreview-item-title {
+    font-weight: 700;
+    padding: 10px;
+}
+.LinkPreview-item-description {
+    font-weight: 300;
+    padding: 10px;
+    max-height: 60px;
+    overflow-y: hidden;
+}
+.LinkPreview-item-url {
+    font-weight: 400;
+    font-size: 0.8em;
+    padding: 10px;
+}
+
+.LinkPreview-item-url a {
+    text-decoration: none;
+}
+
+.LinkPreview-item-image {
+    border-bottom: 1px solid #eee;
+    height: 126px;
+    background-color: #ccc;
 }

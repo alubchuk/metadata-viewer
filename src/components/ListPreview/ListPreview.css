@@ -1,27 +1,31 @@
 .ListPreview {
-    margin-left: 30px;
+    padding: 10px 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex-basis: 10%;
+    border-right: 1px solid #eee;
 }
 
 .ListPreview-container {
     list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    padding-left: 0;
 }
 
 .ListPreview-item {
     color: white;
     padding: 15px;
     border: 1px solid black;
-    border-radius: 10%;
+    border-radius: 15px;
     text-align: center;
-    margin: 5px 10px;
+    margin-bottom: 5px;
 }
 
-.user {
+.ListPreview-item-user {
     background-color: #114499;
 }
 
-.tag {
+.ListPreview-item-tag {
     background-color: #000;
 }

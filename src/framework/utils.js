@@ -21,7 +21,6 @@ export const parseQuery = ({query, queryConfig, urlValidator}: parseQueryType) =
 
 const ipRegex = (function() {
     const v4 = '(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])(?:\\.(?:25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9][0-9]|[0-9])){3}';
-
     const v6seg = '[0-9a-fA-F]{1,4}';
     const v6 = `
     (?:${v6seg}:){1,4}:${v4}|                 # 2001:db8:3:4::192.0.2.33  64:ff9b::192.0.2.33
@@ -50,7 +49,6 @@ const ipRegex = (function() {
 })();
 
 export const urlValidator = (opts: Object = {}) => {
-
 	const protocol = '(?:(?:[a-z]+:)?//)';
 	const auth = '(?:\\S+(?::\\S*)?@)?';
 	const ip = ipRegex.v4().source;
