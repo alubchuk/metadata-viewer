@@ -7,7 +7,7 @@ import LinkPreview from './LinkPreview';
 import ListPreview from './ListPreview';
 import urlValidator from 'url-regex';
 import {connect} from 'react-redux';
-import {changeUsers, changeTags, changeSites, resetState} from './reducers';
+import {changeUsers, changeTags, changeSites, resetState} from './reducer';
 
 type stateTypes = {loading: boolean, users: Array<string>, tags: Array<string>, sites: Array<Object>};
 const mapStateToProps = ({loading, users, tags, sites}: stateTypes) => ({

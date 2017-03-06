@@ -1,8 +1,9 @@
 // @flow
 import 'whatwg-fetch';
 import config from './config';
+import axios from 'axios';
 
-const initialState = {
+export const initialState = {
     loading: false,
     users: [],
     tags: [],
@@ -10,13 +11,13 @@ const initialState = {
     error: null
 };
 
-const CHANGE_USERS = 'CHANGE_USERS';
-const CHANGE_TAGS = 'CHANGE_TAGS';
-const RESET_STATE = 'RESET_STATE';
+export const CHANGE_USERS = 'CHANGE_USERS';
+export const CHANGE_TAGS = 'CHANGE_TAGS';
+export const RESET_STATE = 'RESET_STATE';
 
-const FETCH_SITE_METADATA_PROCESSING = 'FETCH_SITE_METADATA_PROCESSING';
-const FETCH_SITE_METADATA_SUCCESS = 'FETCH_SITE_METADATA_SUCCESS';
-const FETCH_SITE_METADATA_ERROR = 'FETCH_SITE_METADATA_ERROR';
+export const FETCH_SITE_METADATA_PROCESSING = 'FETCH_SITE_METADATA_PROCESSING';
+export const FETCH_SITE_METADATA_SUCCESS = 'FETCH_SITE_METADATA_SUCCESS';
+export const FETCH_SITE_METADATA_ERROR = 'FETCH_SITE_METADATA_ERROR';
 
 
 export const resetState = () => ({type: RESET_STATE});
@@ -33,19 +34,27 @@ export const changeTags = (tags: Array<string>) => ({
 
 export const changeSites = (sites: Array<string>) => (dispatch: Function) => {
     dispatch({type: FETCH_SITE_METADATA_PROCESSING});
-    return Promise.all(
-        sites.map(
-            (url: string) => fetch(config.metadataServiceUrl, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({url})
-            })
-            .then((response: Object) => response.json())
-            .then((parsedData: Object) => parsedData)
-        )
-    )
-    .then((sites: Array<Object>) => dispatch({type: FETCH_SITE_METADATA_SUCCESS, payload: {sites}}))
-    .catch((error: Object) => dispatch({type: FETCH_SITE_METADATA_ERROR, error}))
+    // return Promise.all(
+    //     sites.map(
+    //         (url: string) => fetch(config.metadataServiceUrl, {
+    //             method: 'POST',
+    //             headers: {'Content-Type': 'application/json'},
+    //             body: JSON.stringify({url})
+    //         })
+    //         .then((response: Object) => response.json())
+    //         .then((parsedData: Object) => parsedData)
+    //     )
+    // )
+    // .then((sites: Array<Object>) => dispatch({type: FETCH_SITE_METADATA_SUCCESS, payload: {sites}}))
+    // .catch((error: Object) => dispatch({type: FETCH_SITE_METADATA_ERROR, error}))
+    return axios.all(sites.map(
+        (url: string) => axios(config.metadataServiceUrl, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            data: {url}
+        })))
+        .then((result: Array<Object>) => dispatch({type: FETCH_SITE_METADATA_SUCCESS, payload: {sites: result.map((r: Object) => r.data)}}))
+        .catch((error: Object) => dispatch({type: FETCH_SITE_METADATA_ERROR, error: error.response.data}))
 };
 
 const rootReducer = (state: Object = initialState, action: Object) => {

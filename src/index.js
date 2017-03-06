@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 import {Provider} from 'react-redux';
-import {createStore, applyMiddleware, compose} from 'redux';
-import appReducer from './reducers';
+import {createStore, applyMiddleware} from 'redux';
+import appReducer from './reducer';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 
