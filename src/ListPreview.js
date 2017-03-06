@@ -7,7 +7,13 @@ const ListPreview = (props: Object) => (
         <div className="ListPreview">
             <h3>{props.title}:</h3>
             <ul className="ListPreview-container">
-                {props.data.map((item: string, index: number) => <li key={index} className={`ListPreview-item ${props.itemClassName}`}>{item}</li>)}
+                {
+                    props.data.map(
+                        (item: string, index: number) =>
+                        <li key={index} className={`ListPreview-item ${props.itemClassName}`}>
+                            {item}
+                        </li>)
+                }
             </ul>
         </div>
     : null

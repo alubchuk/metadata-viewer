@@ -10,6 +10,10 @@ export default class LinkPreview extends Component {
         loading: PropTypes.bool.isRequired
     };
 
+    shouldComponentUpdate(nextProps: Object) {
+        return nextProps.data !== this.props.data;
+    }
+
     getParsedMetadata() {
         return this.props.data.map((item: Object) => {
             const {open_graph, title = '', description = '', url = '', image = ''} = item;
@@ -27,9 +31,9 @@ export default class LinkPreview extends Component {
         });
     }
 
-    renderMetadataItem = (item: Object) => {
+    renderMetadataItem = (item: Object, index: number) => {
         return (
-            <div>
+            <div key={index}>
                 <h4>Title: {item.title}</h4>
                 <p>Description: {item.description}</p>
                 <p>URL: {item.url ? <a href={item.url}>{item.url}</a> : ''}</p>
@@ -47,7 +51,7 @@ export default class LinkPreview extends Component {
         return (
             <div>
                 <h3>{this.props.data.length ? this.props.title : ''}</h3>
-                {this.getParsedMetadata().map((item: Object) => this.renderMetadataItem(item))}
+                {this.getParsedMetadata().map((item: Object, index: number) => this.renderMetadataItem(item, index))}
             </div>
         );
     }

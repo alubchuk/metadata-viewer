@@ -1,6 +1,5 @@
 // @flow
-import config from './config';
-import axios from 'axios';
+import * as api from './api';
 
 export const initialState = {
     loading: false,
@@ -31,14 +30,21 @@ export const changeTags = (tags: Array<string>) => ({
 
 export const changeSites = (sites: Array<string>) => (dispatch: Function) => {
     dispatch({type: FETCH_SITE_METADATA_PROCESSING});
-    return axios.all(sites.map(
-        (url: string) => axios(config.metadataServiceUrl, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            data: {url}
-        })))
-        .then((result: Array<Object>) => dispatch({type: FETCH_SITE_METADATA_SUCCESS, payload: {sites: result.map((r: Object) => r.data)}}))
-        .catch((error: Object) => dispatch({type: FETCH_SITE_METADATA_ERROR, error: error.response.data}))
+    return api.fetchMetadata(sites)
+        .then(
+            (result: Array<Object>) =>
+                dispatch({
+                    type: FETCH_SITE_METADATA_SUCCESS,
+                    payload: {sites: result.map((r: Object) => r.data)}
+                })
+        )
+        .catch(
+            (error: Object) =>
+                dispatch({
+                    type: FETCH_SITE_METADATA_ERROR,
+                    error: error.response.data
+                })
+        );
 };
 
 export default function (state: Object = initialState, action: Object) {

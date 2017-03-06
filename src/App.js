@@ -1,22 +1,19 @@
 // @flow
 import React, {Component, PropTypes} from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Textarea from './Textarea';
 import LinkPreview from './LinkPreview';
 import ListPreview from './ListPreview';
-import urlValidator from 'url-regex';
 import {connect} from 'react-redux';
 import {changeUsers, changeTags, changeSites, resetState} from './reducer';
+import * as utils from './utils';
+import constants from './constants';
+import urlValidator from 'url-regex';
 
 type stateTypes = {loading: boolean, users: Array<string>, tags: Array<string>, sites: Array<Object>};
 const mapStateToProps = ({loading, users, tags, sites}: stateTypes) => ({
     users, tags, sites, loading
 });
-
-const USER_DELIMITER = '@';
-const TAG_DELIMITER = '#';
-const MIN_SYMBOLS_REQUIRED = 2;
 
 class App extends Component {
   static propTypes = {
@@ -30,24 +27,17 @@ class App extends Component {
       resetState: PropTypes.func.isRequired
   };
 
-  parseAndFilter = (value: string, delimiter: string) => {
-      return value
-        .split(delimiter)
-        .filter((v: string) => v.trim().length > MIN_SYMBOLS_REQUIRED);
-  }
-
   handleChange = (e: Object) => {
       const query = e.target.value;
       if (!query.length) {
           return this.props.resetState();
       }
 
-      const {users, tags, sites} = this.parseAndFilter(query, /\s|,\s|,/).reduce((acc: Object, q: string) => {
-          if (q.startsWith(USER_DELIMITER)) {acc.users.push(q.slice(1))}
-          else if (q.startsWith(TAG_DELIMITER)) {acc.tags.push(q.slice(1))}
-          else if (urlValidator().test(q)) {acc.sites.push(q)}
-          return acc;
-      }, {users: [], tags: [], sites: []});
+      const {users, tags, sites} = utils.parseQuery({
+          query,
+          urlValidator,
+          queryConfig: constants.queryConfig
+      });
 
       if (users.length) {
           this.props.changeUsers(users);
