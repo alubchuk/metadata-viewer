@@ -1,6 +1,7 @@
 // @flow
+import './App.css';
 import React, {PropTypes} from 'react';
-import ListPreview from '../ListPreview/ListPreview';
+import ListPreviewContainer from '../ListPreview/ListPreview';
 import LinkPreviewContainer from '../LinkPreview/LinkPreviewContainer';
 import Textarea from '../Textarea/Textarea';
 
@@ -15,8 +16,8 @@ const App = (props: Object) => (
         <Textarea onChange={props.onChange}/>
         <hr />
         <div className="App-content-preview">
-            <ListPreview data={props.users} title={'Users Preview'} itemClassName='user' />
-            <ListPreview data={props.tags} title={'Tags Preview'} itemClassName='tag' />
+            <ListPreviewContainer type='users' title={'Users Preview'} itemClassName='user' />
+            <ListPreviewContainer type='tags' title={'Tags Preview'} itemClassName='tag' />
             <LinkPreviewContainer title={'Site Metadata Preview'} />
         </div>
       </div>

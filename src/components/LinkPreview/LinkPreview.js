@@ -1,7 +1,7 @@
 // @flow
-import React, {PropTypes} from 'react';
-const Halogen = require('halogen');
 import './LinkPreview.css';
+const Halogen = require('halogen');
+import React, {PropTypes} from 'react';
 import LinkPreviewItem from './LinkPreviewItem';
 
 const LinkPreview = (props: Object) => {

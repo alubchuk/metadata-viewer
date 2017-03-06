@@ -1,10 +1,8 @@
 // @flow
 import React, {Component, PropTypes} from 'react';
-import './App.css';
 import App from './App';
 import {connect} from 'react-redux';
 import {changeUsers, changeTags, changeSites, resetState} from '../../redux/reducer';
-import * as utils from '../../framework/utils';
 import constants from '../../framework/constants';
 
 type stateTypes = {loading: boolean, users: Array<string>, tags: Array<string>, sites: Array<Object>};
@@ -14,6 +12,7 @@ export class AppContainer extends Component {
   static propTypes = {
       users: PropTypes.array.isRequired,
       tags: PropTypes.array.isRequired,
+      utils: PropTypes.object.isRequired,
       changeUsers: PropTypes.func.isRequired,
       changeTags: PropTypes.func.isRequired,
       changeSites: PropTypes.func.isRequired,
@@ -26,9 +25,9 @@ export class AppContainer extends Component {
           return this.props.resetState();
       }
 
-      const {users, tags, sites} = utils.parseQuery({
+      const {users, tags, sites} = this.props.utils.parseQuery({
           query,
-          urlValidator: utils.urlValidator,
+          urlValidator: this.props.utils.urlValidator,
           queryConfig: constants.queryConfig
       });
 

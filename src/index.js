@@ -8,12 +8,13 @@ import {createStore, applyMiddleware, compose} from 'redux';
 import appReducer from './redux/reducer';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
+import * as utils from './framework/utils';
 
 const loggerMiddleware = createLogger();
 const middlewares = [thunk];
 
 if (process.env.NODE_ENV !== 'production') {
-    middlewares.push(loggerMiddleware, createLogger());
+    middlewares.push(loggerMiddleware);
 }
 
 const store = createStore(
@@ -26,7 +27,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <AppContainer />
+    <AppContainer utils={utils} />
   </Provider>,
   document.getElementById('root')
 );

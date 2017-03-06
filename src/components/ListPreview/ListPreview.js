@@ -1,8 +1,13 @@
 // @flow
-import React, {PropTypes} from 'react';
 import './ListPreview.css';
+import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
 
-const ListPreview = (props: Object) => (
+const mapStateToProps = (state: Object, ownProps: Object) => ({
+    data: state[ownProps.type]
+});
+
+export const ListPreview = (props: Object) => (
     props.data.length ?
         <div className="ListPreview">
             <h3>{props.title}:</h3>
@@ -20,9 +25,10 @@ const ListPreview = (props: Object) => (
 );
 
 ListPreview.propTypes = {
+    type: PropTypes.string.isRequired,
     data: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
     itemClassName: PropTypes.string.isRequired
 };
 
-export default ListPreview;
+export default connect(mapStateToProps)(ListPreview);

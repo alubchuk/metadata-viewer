@@ -1,6 +1,6 @@
 // @flow
-import React, {PropTypes} from 'react';
 import './Textarea.css';
+import React, {PropTypes} from 'react';
 
 const Textarea = (props: Object) => (
     <textarea {...props}></textarea>
