@@ -1,5 +1,5 @@
 // @flow
-import * as api from './api';
+import * as api from '../framework/api';
 
 export const initialState = {
     loading: false,

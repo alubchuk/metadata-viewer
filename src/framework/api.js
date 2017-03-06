@@ -1,5 +1,6 @@
+// @flow
 import axios from 'axios';
-import config from './config';
+import config from '../config';
 
 export const fetchMetadata = (sites: Array<string>) => (
     axios.all(sites.map(

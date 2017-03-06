@@ -22,7 +22,7 @@ const usersMock = ['User 1', 'User 2'];
 const tagsMock = ['Tag1', 'Tag2'];
 const sitesMock = ['https://davidwalsh.name'];
 
-const metadataMock = {
+const serverMetadataResponseMock = {
   "open_graph": {
     "og:locale": "en_US",
     "og:type": "website",
@@ -116,11 +116,11 @@ describe('Action Creators tests', () => {
 
         it('dispatch processing and success', (done) => {
             const store = mockStore(initialState);
-            httpMock.onPost().reply(200, metadataMock);
+            httpMock.onPost().reply(200, serverMetadataResponseMock);
 
             const expectedActions = [
                 {type: FETCH_SITE_METADATA_PROCESSING},
-                {type: FETCH_SITE_METADATA_SUCCESS, payload: {sites: [metadataMock]}}
+                {type: FETCH_SITE_METADATA_SUCCESS, payload: {sites: [serverMetadataResponseMock]}}
             ];
 
             store.dispatch(changeSites(sitesMock)).then(() => {

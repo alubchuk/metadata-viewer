@@ -1,6 +1,6 @@
 import deepFreeze from 'deep-freeze';
 
-const testReducer = (reducer: Function, initialState: Object, action: Object, expectedState: Object, debug: boolean = false) => () => {
+const testReducer = (reducer, initialState, action, expectedState, debug = false) => () => {
     deepFreeze(action);
     deepFreeze(initialState);
     const actualState = reducer(initialState, action);

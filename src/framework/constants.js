@@ -1,3 +1,4 @@
+// @flow
 const MIN_SYMBOLS_REQUIRED = 3;
 const USER_DELIMITER = '@';
 const TAG_DELIMITER = '#';

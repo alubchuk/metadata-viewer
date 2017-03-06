@@ -1,11 +1,11 @@
 // @flow
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import AppContainer from './components/App/AppContainer';
 import './index.css';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware, compose} from 'redux';
-import appReducer from './reducer';
+import appReducer from './redux/reducer';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 
@@ -26,7 +26,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
   document.getElementById('root')
 );
