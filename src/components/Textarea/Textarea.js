@@ -9,8 +9,6 @@ const Textarea = (props: Object) => (
 Textarea.propTypes = {
     onChange: PropTypes.func.isRequired,
     autoFocus: PropTypes.bool,
-    cols: PropTypes.number,
-    rows: PropTypes.number,
     placeholder: PropTypes.string,
     wrap: PropTypes.string,
     name: PropTypes.string,
@@ -19,9 +17,7 @@ Textarea.propTypes = {
 
 Textarea.defaultProps = {
     autoFocus: true,
-    cols: 60,
-    rows: 5,
-    placeholder: 'Type your search...',
+    placeholder: 'Type your search in the following format: @username, #tagname or some site (e.g. https://heise.de, https://amazon.com, https://davidwalsh.name). Delimiters are space, comma and comma + space.',
     wrap: 'hard',
     name: 'search',
     className: 'Textarea'
