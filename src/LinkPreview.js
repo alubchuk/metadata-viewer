@@ -1,6 +1,7 @@
 // @flow
 import React, {Component, PropTypes} from 'react';
 import './LinkPreview.css';
+const Halogen = require('halogen');
 
 export default class LinkPreview extends Component {
     static propTypes = {
@@ -37,10 +38,10 @@ export default class LinkPreview extends Component {
         );
     };
 
-    render() {
+    renderMetadataContent() {
         if (this.props.loading) {
             return (
-                <div>Loading...</div>
+                <Halogen.RingLoader color='#DD0A1A' className='LinkPreview-loader' />
             );
         }
         return (
@@ -48,6 +49,12 @@ export default class LinkPreview extends Component {
                 <h3>{this.props.data.length ? this.props.title : ''}</h3>
                 {this.getParsedMetadata().map((item: Object) => this.renderMetadataItem(item))}
             </div>
+        );
+    }
+
+    render() {
+        return (
+            <div className='LinkPreview'>{this.renderMetadataContent()}</div>
         );
     }
 }

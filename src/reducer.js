@@ -1,5 +1,4 @@
 // @flow
-import 'whatwg-fetch';
 import config from './config';
 import axios from 'axios';
 
@@ -19,9 +18,7 @@ export const FETCH_SITE_METADATA_PROCESSING = 'FETCH_SITE_METADATA_PROCESSING';
 export const FETCH_SITE_METADATA_SUCCESS = 'FETCH_SITE_METADATA_SUCCESS';
 export const FETCH_SITE_METADATA_ERROR = 'FETCH_SITE_METADATA_ERROR';
 
-
 export const resetState = () => ({type: RESET_STATE});
-
 export const changeUsers = (users: Array<string>) => ({
     type: CHANGE_USERS,
     payload: {users}
@@ -34,19 +31,6 @@ export const changeTags = (tags: Array<string>) => ({
 
 export const changeSites = (sites: Array<string>) => (dispatch: Function) => {
     dispatch({type: FETCH_SITE_METADATA_PROCESSING});
-    // return Promise.all(
-    //     sites.map(
-    //         (url: string) => fetch(config.metadataServiceUrl, {
-    //             method: 'POST',
-    //             headers: {'Content-Type': 'application/json'},
-    //             body: JSON.stringify({url})
-    //         })
-    //         .then((response: Object) => response.json())
-    //         .then((parsedData: Object) => parsedData)
-    //     )
-    // )
-    // .then((sites: Array<Object>) => dispatch({type: FETCH_SITE_METADATA_SUCCESS, payload: {sites}}))
-    // .catch((error: Object) => dispatch({type: FETCH_SITE_METADATA_ERROR, error}))
     return axios.all(sites.map(
         (url: string) => axios(config.metadataServiceUrl, {
             method: 'POST',
@@ -57,7 +41,7 @@ export const changeSites = (sites: Array<string>) => (dispatch: Function) => {
         .catch((error: Object) => dispatch({type: FETCH_SITE_METADATA_ERROR, error: error.response.data}))
 };
 
-const rootReducer = (state: Object = initialState, action: Object) => {
+export default function (state: Object = initialState, action: Object) {
     switch(action.type) {
         case CHANGE_USERS:
             return {
@@ -92,6 +76,4 @@ const rootReducer = (state: Object = initialState, action: Object) => {
         default:
             return initialState;
     }
-};
-
-export default rootReducer;
+}

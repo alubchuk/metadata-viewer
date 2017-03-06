@@ -16,7 +16,7 @@ const mapStateToProps = ({loading, users, tags, sites}: stateTypes) => ({
 
 const USER_DELIMITER = '@';
 const TAG_DELIMITER = '#';
-const LINK_DELIMITER = ' ';
+const MIN_SYMBOLS_REQUIRED = 2;
 
 class App extends Component {
   static propTypes = {
@@ -30,7 +30,11 @@ class App extends Component {
       resetState: PropTypes.func.isRequired
   };
 
-  parseAndFilter = (value: string, delimiter: string) => value.split(delimiter).filter((item: string) => item.trim());
+  parseAndFilter = (value: string, delimiter: string) => {
+      return value
+        .split(delimiter)
+        .filter((v: string) => v.trim().length > MIN_SYMBOLS_REQUIRED);
+  }
 
   handleChange = (e: Object) => {
       const query = e.target.value;
@@ -38,16 +42,23 @@ class App extends Component {
           return this.props.resetState();
       }
 
-      if (query.startsWith(USER_DELIMITER)) {
-          return this.props.changeUsers(this.parseAndFilter(query, USER_DELIMITER));
+      const {users, tags, sites} = this.parseAndFilter(query, /\s|,\s|,/).reduce((acc: Object, q: string) => {
+          if (q.startsWith(USER_DELIMITER)) {acc.users.push(q.slice(1))}
+          else if (q.startsWith(TAG_DELIMITER)) {acc.tags.push(q.slice(1))}
+          else if (urlValidator().test(q)) {acc.sites.push(q)}
+          return acc;
+      }, {users: [], tags: [], sites: []});
+
+      if (users.length) {
+          this.props.changeUsers(users);
       }
 
-      if (query.startsWith(TAG_DELIMITER)) {
-          return this.props.changeTags(this.parseAndFilter(query, TAG_DELIMITER));
+      if (tags.length) {
+          this.props.changeTags(tags);
       }
 
-      if (urlValidator().test(query)) {
-          return this.props.changeSites(this.parseAndFilter(query, LINK_DELIMITER));
+      if (sites.length) {
+          this.props.changeSites(sites);
       }
   };
 
@@ -55,8 +66,8 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Metadata Viewer</h2>
+          <img src='http://brandslisten.com/wp-content/uploads/2016/11/logo.png' className="App-logo" alt="logo" />
+          <h2>Metadata Preview</h2>
         </div>
         <div className="App-content">
           <Textarea onChange={this.handleChange}/>
