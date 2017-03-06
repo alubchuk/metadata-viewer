@@ -4,13 +4,24 @@
 
 .ListPreview-container {
     list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .ListPreview-item {
-    background: #114499;
     color: white;
     padding: 10px;
     border: 1px solid black;
     border-radius: 50%;
     text-align: center;
+    margin: 5px 10px;
+}
+
+.user {
+    background-color: #114499;
+}
+
+.tag {
+    background-color: black;
 }

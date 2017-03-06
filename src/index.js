@@ -1,9 +1,24 @@
+// @flow
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware, compose} from 'redux';
+import appReducer from './reducers';
+import createLogger from 'redux-logger';
+import thunk from 'redux-thunk';
+
+const loggerMiddleware = createLogger();
+const middlewares = [thunk];
+
+if (process.env.NODE_ENV !== 'production') {
+    middlewares.push(loggerMiddleware, createLogger());
+}
 
 ReactDOM.render(
-  <App />,
+  <Provider store={createStore(appReducer, applyMiddleware(...middlewares))}>
+    <App />
+  </Provider>,
   document.getElementById('root')
 );
