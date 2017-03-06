@@ -1,5 +1,6 @@
 {
   "name": "metadata-previewer",
+  "homepage": "https://build-bgdngzbool.now.sh/",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
