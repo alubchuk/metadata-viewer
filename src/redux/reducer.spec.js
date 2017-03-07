@@ -1,8 +1,8 @@
 import testReducer from './testReducer';
 import reducer, {
     initialState,
-    CHANGE_USERS,
-    CHANGE_TAGS,
+    UPDATE_USERS,
+    UPDATE_TAGS,
     RESET_STATE,
     FETCH_SITE_METADATA_PROCESSING,
     FETCH_SITE_METADATA_SUCCESS,
@@ -45,14 +45,14 @@ describe('Reducer tests', () => {
         it('Should return a list of new users', testReducer(
             reducer,
             initialState,
-            {type: CHANGE_USERS, payload: {users: usersMock}},
+            {type: UPDATE_USERS, payload: {users: usersMock}},
             {...initialState, users: usersMock}
         ));
 
         it('Should return a list of new tags', testReducer(
             reducer,
             initialState,
-            {type: CHANGE_TAGS, payload: {tags: tagsMock}},
+            {type: UPDATE_TAGS, payload: {tags: tagsMock}},
             {...initialState, tags: tagsMock}
         ))
     });
@@ -95,11 +95,11 @@ describe('Action Creators tests', () => {
     // SYNC ACTION CREATORS tests
     describe('Simple List Preview of Users and Tags', () => {
         it('Should return an action for changing the users', () => {
-            expect(updateUsers(usersMock)).toEqual({type: CHANGE_USERS, payload: {users: usersMock}});
+            expect(updateUsers(usersMock)).toEqual({type: UPDATE_USERS, payload: {users: usersMock}});
         });
 
         it('Should return an action for changing the tags', () => {
-            expect(updateTags(tagsMock)).toEqual({type: CHANGE_TAGS, payload: {tags: tagsMock}});
+            expect(updateTags(tagsMock)).toEqual({type: UPDATE_TAGS, payload: {tags: tagsMock}});
         });
     });
 

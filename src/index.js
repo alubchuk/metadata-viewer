@@ -1,8 +1,8 @@
 // @flow
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AppContainer from './components/App/AppContainer';
-import './index.css';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware, compose} from 'redux';
 import appReducer from './redux/reducer';

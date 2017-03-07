@@ -9,8 +9,8 @@ export const initialState = {
     error: ''
 };
 
-export const CHANGE_USERS = 'CHANGE_USERS';
-export const CHANGE_TAGS = 'CHANGE_TAGS';
+export const UPDATE_USERS = 'UPDATE_USERS';
+export const UPDATE_TAGS = 'UPDATE_TAGS';
 export const RESET_STATE = 'RESET_STATE';
 
 export const FETCH_SITE_METADATA_PROCESSING = 'FETCH_SITE_METADATA_PROCESSING';
@@ -20,12 +20,12 @@ export const FETCH_SITE_METADATA_ERROR = 'FETCH_SITE_METADATA_ERROR';
 export const resetState = () => ({type: RESET_STATE});
 
 export const updateUsers = (users: Array<string>) => ({
-    type: CHANGE_USERS,
+    type: UPDATE_USERS,
     payload: {users}
 });
 
 export const updateTags = (tags: Array<string>) => ({
-    type: CHANGE_TAGS,
+    type: UPDATE_TAGS,
     payload: {tags}
 });
 
@@ -50,12 +50,12 @@ export const updateSites = (sites: Array<string>) => (dispatch: Function) => {
 
 export default function (state: Object = initialState, action: Object) {
     switch(action.type) {
-        case CHANGE_USERS:
+        case UPDATE_USERS:
             return {
                 ...state,
                 users: action.payload.users.slice()
             };
-        case CHANGE_TAGS:
+        case UPDATE_TAGS:
             return {
                 ...state,
                 tags: action.payload.tags.slice()
