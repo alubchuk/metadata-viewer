@@ -51,7 +51,7 @@ describe('Test parseQuery utility', () => {
 
     it(`Should return empty arrays if query contains < ${queryConfig.MIN_SYMBOLS_REQUIRED} symbols`, () => {
         expect(parseQuery({
-            query: '@u',
+            query: '@',
             queryConfig,
             urlValidator
         })).toEqual({sites: [], tags: [], users: []});

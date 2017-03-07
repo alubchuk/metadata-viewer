@@ -19,17 +19,17 @@ export const FETCH_SITE_METADATA_ERROR = 'FETCH_SITE_METADATA_ERROR';
 
 export const resetState = () => ({type: RESET_STATE});
 
-export const changeUsers = (users: Array<string>) => ({
+export const updateUsers = (users: Array<string>) => ({
     type: CHANGE_USERS,
     payload: {users}
 });
 
-export const changeTags = (tags: Array<string>) => ({
+export const updateTags = (tags: Array<string>) => ({
     type: CHANGE_TAGS,
     payload: {tags}
 });
 
-export const changeSites = (sites: Array<string>) => (dispatch: Function) => {
+export const updateSites = (sites: Array<string>) => (dispatch: Function) => {
     dispatch({type: FETCH_SITE_METADATA_PROCESSING});
     return api.fetchMetadata(sites)
         .then(

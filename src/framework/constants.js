@@ -1,5 +1,5 @@
 // @flow
-const MIN_SYMBOLS_REQUIRED = 3;
+const MIN_SYMBOLS_REQUIRED = 2;
 const USER_DELIMITER = '@';
 const TAG_DELIMITER = '#';
 const WORDS_DELIMITER = /\s|,\s|,/;

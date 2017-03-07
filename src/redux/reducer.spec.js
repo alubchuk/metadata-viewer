@@ -7,9 +7,9 @@ import reducer, {
     FETCH_SITE_METADATA_PROCESSING,
     FETCH_SITE_METADATA_SUCCESS,
     FETCH_SITE_METADATA_ERROR,
-    changeUsers,
-    changeTags,
-    changeSites,
+    updateUsers,
+    updateTags,
+    updateSites,
     resetState
 } from './reducer';
 import configureStore from 'redux-mock-store';
@@ -95,11 +95,11 @@ describe('Action Creators tests', () => {
     // SYNC ACTION CREATORS tests
     describe('Simple List Preview of Users and Tags', () => {
         it('Should return an action for changing the users', () => {
-            expect(changeUsers(usersMock)).toEqual({type: CHANGE_USERS, payload: {users: usersMock}});
+            expect(updateUsers(usersMock)).toEqual({type: CHANGE_USERS, payload: {users: usersMock}});
         });
 
         it('Should return an action for changing the tags', () => {
-            expect(changeTags(tagsMock)).toEqual({type: CHANGE_TAGS, payload: {tags: tagsMock}});
+            expect(updateTags(tagsMock)).toEqual({type: CHANGE_TAGS, payload: {tags: tagsMock}});
         });
     });
 
@@ -123,7 +123,7 @@ describe('Action Creators tests', () => {
                 {type: FETCH_SITE_METADATA_SUCCESS, payload: {sites: [serverMetadataResponseMock]}}
             ];
 
-            store.dispatch(changeSites(sitesMock)).then(() => {
+            store.dispatch(updateSites(sitesMock)).then(() => {
                 expect(store.getActions()).toEqual(expectedActions);
                 done();
             });
@@ -137,7 +137,7 @@ describe('Action Creators tests', () => {
                 {type: FETCH_SITE_METADATA_PROCESSING},
                 {type: FETCH_SITE_METADATA_ERROR, error: {message: 'Something went wrong'}},
             ];
-            store.dispatch(changeSites(sitesMock)).then(() => {
+            store.dispatch(updateSites(sitesMock)).then(() => {
                 expect(store.getActions()).toEqual(expectedActions);
                 done();
             })

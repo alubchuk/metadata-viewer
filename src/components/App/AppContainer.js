@@ -2,20 +2,21 @@
 import React, {Component, PropTypes} from 'react';
 import App from './App';
 import {connect} from 'react-redux';
-import {changeUsers, changeTags, changeSites, resetState} from '../../redux/reducer';
+import {updateUsers, updateTags, updateSites, resetState} from '../../redux/reducer';
 import constants from '../../framework/constants';
 
 type stateTypes = {loading: boolean, users: Array<string>, tags: Array<string>, sites: Array<Object>};
-const mapStateToProps = ({users, tags}: stateTypes) => ({users, tags});
+const mapStateToProps = ({users, tags, sites}: stateTypes) => ({users, tags, sites});
 
 export class AppContainer extends Component {
   static propTypes = {
       users: PropTypes.array.isRequired,
       tags: PropTypes.array.isRequired,
+      sites: PropTypes.array.isRequired,
       utils: PropTypes.object.isRequired,
-      changeUsers: PropTypes.func.isRequired,
-      changeTags: PropTypes.func.isRequired,
-      changeSites: PropTypes.func.isRequired,
+      updateUsers: PropTypes.func.isRequired,
+      updateTags: PropTypes.func.isRequired,
+      updateSites: PropTypes.func.isRequired,
       resetState: PropTypes.func.isRequired
   };
 
@@ -31,18 +32,18 @@ export class AppContainer extends Component {
           queryConfig: constants.queryConfig
       });
 
-      if (users.length) {
-          this.props.changeUsers(users);
+      if (users.length || this.props.users.length) {
+          this.props.updateUsers(users);
       }
 
-      if (tags.length) {
-          this.props.changeTags(tags);
+      if (tags.length || this.props.tags.length) {
+          this.props.updateTags(tags);
       }
 
-      if (sites.length) {
-          this.props.changeSites(sites);
+      if (sites.length || this.props.sites.length) {
+          this.props.updateSites(sites);
       }
-  };
+};
 
   render() {
     const {users, tags} = this.props;
@@ -56,4 +57,4 @@ export class AppContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps, {changeUsers, changeTags, changeSites, resetState})(AppContainer);
+export default connect(mapStateToProps, {updateUsers, updateTags, updateSites, resetState})(AppContainer);
