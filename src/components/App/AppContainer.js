@@ -3,7 +3,6 @@ import React, {Component, PropTypes} from 'react';
 import App from './App';
 import {connect} from 'react-redux';
 import {updateUsers, updateTags, updateSites, resetState} from '../../redux/reducer';
-import constants from '../../framework/constants';
 
 type stateTypes = {loading: boolean, users: Array<string>, tags: Array<string>, sites: Array<Object>};
 const mapStateToProps = ({users, tags, sites}: stateTypes) => ({users, tags, sites});
@@ -14,6 +13,7 @@ export class AppContainer extends Component {
       tags: PropTypes.array.isRequired,
       sites: PropTypes.array.isRequired,
       utils: PropTypes.object.isRequired,
+      queryConfig: PropTypes.object.isRequired,
       updateUsers: PropTypes.func.isRequired,
       updateTags: PropTypes.func.isRequired,
       updateSites: PropTypes.func.isRequired,
@@ -29,7 +29,7 @@ export class AppContainer extends Component {
       const {users, tags, sites} = this.props.utils.parseQuery({
           query,
           urlValidator: this.props.utils.urlValidator,
-          queryConfig: constants.queryConfig
+          queryConfig: this.props.queryConfig
       });
 
       if (users.length || this.props.users.length) {

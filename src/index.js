@@ -9,6 +9,7 @@ import appReducer from './redux/reducer';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 import * as utils from './framework/utils';
+import constants from './framework/constants';
 
 const loggerMiddleware = createLogger();
 const middlewares = [thunk];
@@ -27,7 +28,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <AppContainer utils={utils} />
+    <AppContainer utils={utils} queryConfig={constants.queryConfig}/>
   </Provider>,
   document.getElementById('root')
 );
