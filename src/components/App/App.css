@@ -14,6 +14,18 @@
   color: white;
 }
 
+.App-content-search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.App-content-search-spinner {
+    flex-basis: 10%;
+    margin-left: 10px;
+}
+
 .App-content-preview {
     margin: 10px 0;
     display: flex;

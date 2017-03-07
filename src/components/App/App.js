@@ -4,6 +4,7 @@ import React, {PropTypes} from 'react';
 import ListPreviewContainer from '../ListPreview/ListPreview';
 import LinkPreviewContainer from '../LinkPreview/LinkPreviewContainer';
 import Textarea from '../Textarea/Textarea';
+const Halogen = require('halogen');
 
 const App = (props: Object) => (
     <div className="App">
@@ -13,7 +14,13 @@ const App = (props: Object) => (
       </div>
 
       <div>
-        <Textarea onChange={props.onChange}/>
+        <div className="App-content-search">
+            <Textarea onChange={props.onChange}/>
+            <div className='App-content-search-spinner'>
+                {props.loading ? <Halogen.PulseLoader color='#DD0A1A' /> : null}
+            </div>
+        </div>
+
         <div className="App-content-preview">
             <ListPreviewContainer type='users' title={'Users'} itemClassName='user' />
             <ListPreviewContainer type='tags' title={'Tags'} itemClassName='tag' />
@@ -24,6 +31,7 @@ const App = (props: Object) => (
 );
 
 App.propTypes = {
+    loading: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
     users: PropTypes.array.isRequired,

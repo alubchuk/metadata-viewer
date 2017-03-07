@@ -7,6 +7,7 @@ import constants from '../../framework/constants';
 
 function setup() {
   const props = {
+    loading: false,
     users: [],
     tags: [],
     sites: [],

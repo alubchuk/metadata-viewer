@@ -2,7 +2,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 [![Build Status](https://travis-ci.org/alubchuk/metadata-viewer.svg?branch=master)](https://travis-ci.org/alubchuk/metadata-viewer)
 
-[Project online link](https://build-ziypidrqkc.now.sh "Metadata Viewer") (if it doesn't work, it means that browser can complain about not secured requests. To fix that click this icon in the address bar:<br /> ![Click](https://monosnap.com/file/pcKQUUrS1kBFoL8rcZWVc7jGlfrWEm.png "Click it"))<br /> and then choose **Load unsafe scripts**
+[Project online link](https://build-gudiakwkbr.now.sh "Metadata Viewer") (if it doesn't work, it means that browser can complain about not secured requests. To fix that click this icon in the address bar:<br /> ![Click](https://monosnap.com/file/pcKQUUrS1kBFoL8rcZWVc7jGlfrWEm.png "Click it"))<br /> and then choose **Load unsafe scripts**
 
 ### Below you will find some information on how to perform common tasks.
 

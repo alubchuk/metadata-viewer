@@ -5,6 +5,7 @@
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
     padding: 15px;
     border-radius: 10px;
-    width: 50%;
     height: 6em;
+    flex-basis: 50%;
+    flex-shrink: 0;
 }

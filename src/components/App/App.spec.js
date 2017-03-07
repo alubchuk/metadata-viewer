@@ -10,7 +10,8 @@ function setup() {
     onChange: jest.fn(),
     title: 'Some Test Title',
     users: [],
-    tags: []
+    tags: [],
+    loading: false
   }
   const enzymeWrapper = shallow(<App {...props} />)
   return {props, enzymeWrapper};
