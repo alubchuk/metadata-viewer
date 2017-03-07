@@ -17,7 +17,7 @@ Textarea.propTypes = {
 
 Textarea.defaultProps = {
     autoFocus: true,
-    placeholder: 'Type your search in the following format: @username, #tagname or some site (e.g. https://heise.de, https://amazon.com, https://davidwalsh.name). Delimiters are space, comma and comma + space.',
+    placeholder: 'Type your search in the following format: @username, #tagname or some site (e.g. https://heise.de, https://amazon.com, https://davidwalsh.name). Delimiters are space, comma and comma + space. You can combine usernames, tags and links together and type them one after another',
     wrap: 'hard',
     name: 'search',
     className: 'Textarea'
